@@ -2,8 +2,43 @@
 const EMPTY_HEART = '♡'
 const FULL_HEART = '♥'
 
-// Your JavaScript code goes here!
+const glyphStates = {
+  "♡": "♥",
+  "♥": "♡"
+};
 
+const colorstates = {
+  "pink": "",
+  "" : "pink"
+}
+
+
+
+// Your JavaScript code goes here!
+const articleHearts = document.querySelectorAll(".like-glyph");
+
+const modal = document.querySelector("#modal")
+modal.setAttribute("class", "hidden")
+console.log(modal);
+
+function likeCallback(e) {
+  const heart = e.target;
+  mimicServerCall("bogusUrl")
+   //OR: mimicServerCall("bogusUrl", {forceFailure: true})
+    .then(function(serverMessage){
+       heart.innerText = glyphStates[heart.innerText];
+       heart.style.color = colorStates[heart.style.color];
+    })
+}
+
+for (const glyph of articleHearts) {
+  glyph.addEventListener("click", likeCallback);
+}
+
+
+for (const glyph of articleHearts) {
+  glyph.addEventListener("click", likeCallback);
+}
 
 
 
